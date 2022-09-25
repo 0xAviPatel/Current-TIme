@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 const CurrentTime = () => {
-  const date = new Date();
+  let date = new Date();
 
-  const hour = date.toLocaleString("en-US", {
+  let hour = date.toLocaleString("en-US", {
     hour: "numeric",
     minute: "numeric",
     second: "numeric",
@@ -11,10 +11,21 @@ const CurrentTime = () => {
   });
   const [time, setTime] = useState(hour);
 
+  const changeTime = () => {
+    
+    const newTime = new Date().toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: true,
+    })
+    setTime(newTime);
+  };
+
   return (
     <div>
       <h2>{time}</h2>
-      <button onClick={() => setTime(hour)}>Set Current Time</button>
+      <button onClick={changeTime}>Set Current Time</button>
       {console.log(time)}
     </div>
   );
